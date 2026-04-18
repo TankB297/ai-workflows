@@ -1,6 +1,6 @@
 # ai-workflows
 
-Personal workflow templates for working with coding agents across ReactJS, React Native, and NextJS projects.
+Personal workflow templates for working with coding agents across React, React Native, and Next.js projects.
 
 This repo is intentionally small. It is not a framework, plugin system, or installer. It stores reusable prompts, role templates, and Codex-compatible skills that can be synced across machines.
 
@@ -65,6 +65,12 @@ Push this repo to GitHub and clone it on each machine.
 Recommended use:
 
 1. Keep this repo as the source of truth.
-2. Copy specific skills into your Codex skills directory when needed.
+2. Install or symlink skills into your local agent skill discovery directory.
 3. Keep local machine-specific config outside this repo.
 4. Do not commit generated files, OS metadata, secrets, or project-specific state.
+
+## Local Consumption
+
+This repo is the source of truth.
+Install or symlink skills locally when needed.
+Keep machine-specific setup outside the repo.

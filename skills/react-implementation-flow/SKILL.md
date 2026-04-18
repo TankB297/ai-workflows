@@ -1,6 +1,6 @@
 ---
 name: react-implementation-flow
-description: Execute ReactJS, React Native, and NextJS tasks from a validated plan using focused exploration, minimal implementation, and targeted verification.
+description: Execute React, React Native, and Next.js tasks from a validated plan using focused exploration, minimal implementation, and targeted verification.
 ---
 
 # React Implementation Flow
@@ -9,9 +9,9 @@ Use this skill to execute a React ecosystem task from an existing request or pla
 
 Supported targets:
 
-- ReactJS
+- React
 - React Native
-- NextJS
+- Next.js
 
 Supported task types:
 
@@ -30,7 +30,7 @@ This skill is self-contained. The `agents/` and `prompts/` folders may provide u
 
 Before implementing, identify the project type from repo files and conventions.
 
-ReactJS indicators:
+React indicators:
 
 - `package.json` with React dependencies
 - Vite, CRA, Webpack, or similar web tooling
@@ -42,7 +42,7 @@ React Native indicators:
 - Expo config, Metro config, native folders, or mobile entrypoints
 - platform-specific files such as `.ios.*`, `.android.*`, `ios/`, `android/`
 
-NextJS indicators:
+Next.js indicators:
 
 - `next` dependency
 - `next.config.*`
@@ -51,9 +51,9 @@ NextJS indicators:
 
 Adapt implementation accordingly:
 
-- ReactJS: preserve component boundaries, browser behavior, routing, state, and build tooling.
+- React: preserve component boundaries, browser behavior, routing, state, and build tooling.
 - React Native: preserve platform behavior, navigation patterns, native constraints, and device-specific UX.
-- NextJS: respect server/client components, route conventions, data fetching boundaries, caching, and runtime constraints.
+- Next.js: respect server/client components, route conventions, data fetching boundaries, caching, and runtime constraints.
 
 ## Workflow
 
@@ -61,7 +61,7 @@ Adapt implementation accordingly:
 
 - Compare the request or plan with the actual repository.
 - Identify wrong assumptions, missing files, missing dependencies, or unclear behavior.
-- Confirm the target framework: ReactJS, React Native, or NextJS.
+- Confirm the target framework: React, React Native, or Next.js.
 - Refine the approach before editing code.
 - For non-trivial work, state the implementation plan before making changes.
 
@@ -104,7 +104,7 @@ Verify the most relevant combination of:
 
 For React Native, prefer targeted platform checks when the change is platform-sensitive.
 
-For NextJS, verify client/server boundaries and route behavior when affected.
+For Next.js, verify client/server boundaries and route behavior when affected.
 
 If verification cannot be completed, state exactly what was not verified and why.
 
