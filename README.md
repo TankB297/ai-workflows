@@ -74,3 +74,8 @@ Recommended use:
 This repo is the source of truth.
 Install or symlink skills locally when needed.
 Keep machine-specific setup outside the repo.
+
+Note:
+- The first argument is interpreted as the repo path if it points to a valid directory.
+- To link specific skills, always pass the repo path first: `./setup.sh /absolute/path/to/ai-workflows react-implementation-flow`
+- Running `./setup.sh react-implementation-flow` alone will be treated as a repo path and may fail.
