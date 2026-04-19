@@ -4,6 +4,43 @@ Personal workflow templates for working with coding agents across React, React N
 
 This repo is intentionally small. It is not a framework, plugin system, or installer. It stores reusable prompts, role templates, and Codex-compatible skills that can be synced across machines.
 
+## Setup
+
+After cloning this repo to the default location:
+
+```bash
+cd ~/Workspace/AI/ai-workflows
+bash setup.sh
+```
+
+This links all skills under `skills/` into the local agent skill discovery directory.
+
+## Usage
+
+This repo is currently Codex-first. Skills and setup scripts are designed for Codex-style local skill discovery, while prompts and role templates remain plain Markdown.
+
+Recommended workflow:
+
+1. Create one planning thread with GPT-5.4.
+2. Use GPT-5.4 for reasoning, discussion, review, and implementation planning.
+3. Copy the final implementation plan into a GPT-5.3-Codex execution thread.
+4. Ask Codex to use the relevant skills, such as `react-implementation-flow` and `project-memory`.
+5. Use the Explorer, Implementer, and Verifier role templates as sub-agent-style guidance when useful.
+6. Let Codex validate the plan against the actual repo before editing, then implement and verify.
+
+For planning, use:
+
+```text
+prompts/planner-gpt5.4.md
+```
+
+For execution, ask Codex to use:
+
+```text
+skills/react-implementation-flow/SKILL.md
+skills/project-memory/SKILL.md
+```
+
 ## Workflow
 
 Default model split:
