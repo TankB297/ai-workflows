@@ -28,15 +28,32 @@ Skills live in:
 skills/<skill-name>/SKILL.md
 ```
 
-The main skill is:
+Current skills:
 
 ```text
 skills/react-implementation-flow/SKILL.md
+skills/project-memory/SKILL.md
 ```
 
-Use it for ReactJS, React Native, and NextJS implementation work.
+Use `react-implementation-flow` for React, React Native, and Next.js implementation work.
+Use `project-memory` when MemPalace context may help before coding.
 
-The skill is self-contained. It should still work if copied without the `agents/` or `prompts/` folders.
+Skills are self-contained. They should still work if copied without the `agents/` or `prompts/` folders.
+
+## Optional Project Memory
+
+`project-memory` is an optional skill for using MemPalace as supporting context before coding.
+
+MemPalace setup is local per machine. This repo stores the reusable skill, but it does not configure MCP servers or mine project memory.
+
+To enable local MemPalace MCP for Codex:
+
+```bash
+codex mcp add mempalace -- python3 -m mempalace.mcp_server
+codex mcp list
+```
+
+`setup.sh` only links skills into the local agent skill discovery directory.
 
 ## Folders
 
