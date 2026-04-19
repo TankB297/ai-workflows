@@ -1,22 +1,25 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_DIR="${1:-$HOME/Workspace/AI/ai-workflows}"
-SKILLS_DIR="$REPO_DIR/skills"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$SCRIPT_DIR"
 TARGET_SKILLS_DIR="$HOME/.agents/skills"
 
 usage() {
   cat <<EOF
 Usage:
-  ./setup.sh [repo_path] [skill_name ...]
+  bash setup.sh [repo_path] [skill_name ...]
+  bash setup.sh [skill_name ...]
 
 Examples:
-  ./setup.sh
-  ./setup.sh /absolute/path/to/ai-workflows
-  ./setup.sh /absolute/path/to/ai-workflows react-implementation-flow
-  ./setup.sh /absolute/path/to/ai-workflows react-implementation-flow another-skill
+  bash setup.sh
+  bash setup.sh react-implementation-flow
+  bash setup.sh react-implementation-flow project-memory
+  bash setup.sh /absolute/path/to/ai-workflows
+  bash setup.sh /absolute/path/to/ai-workflows react-implementation-flow
 
 Behavior:
+  - If no repo path is provided, the directory containing setup.sh is used.
   - If no skill names are provided, all skills under \$REPO_DIR/skills are linked.
   - If one or more skill names are provided, only those skills are linked.
 EOF
@@ -26,6 +29,13 @@ if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
   usage
   exit 0
 fi
+
+if [ $# -gt 0 ] && [ -d "$1" ]; then
+  REPO_DIR="$(cd -- "$1" && pwd)"
+  shift
+fi
+
+SKILLS_DIR="$REPO_DIR/skills"
 
 if [ ! -d "$REPO_DIR" ]; then
   echo "Error: repo directory not found: $REPO_DIR"
@@ -38,15 +48,6 @@ if [ ! -d "$SKILLS_DIR" ]; then
 fi
 
 mkdir -p "$TARGET_SKILLS_DIR"
-
-shift_count=0
-if [ $# -gt 0 ]; then
-  FIRST_ARG="$1"
-  if [ -d "$FIRST_ARG" ]; then
-    shift
-    shift_count=1
-  fi
-fi
 
 SELECTED_SKILLS=("$@")
 
@@ -75,10 +76,17 @@ link_skill() {
   fi
 
   if [ -L "$target_link" ] || [ -e "$target_link" ]; then
-    rm -rf "$target_link"
+    if ! rm -rf "$target_link"; then
+      echo "Warning: failed to remove existing target: $target_link"
+      return 1
+    fi
   fi
 
-  ln -s "$source_dir" "$target_link"
+  if ! ln -s "$source_dir" "$target_link"; then
+    echo "Warning: failed to link skill: $skill_name"
+    return 1
+  fi
+
   echo "Linked: $skill_name"
   ls -ld "$target_link"
 }
@@ -88,7 +96,9 @@ echo "Target skill directory: $TARGET_SKILLS_DIR"
 echo
 
 if [ ${#SELECTED_SKILLS[@]} -eq 0 ]; then
-  mapfile -t SELECTED_SKILLS < <(discover_all_skills)
+  while IFS= read -r skill_name; do
+    SELECTED_SKILLS+=("$skill_name")
+  done < <(discover_all_skills)
 fi
 
 if [ ${#SELECTED_SKILLS[@]} -eq 0 ]; then

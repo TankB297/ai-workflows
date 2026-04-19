@@ -6,10 +6,10 @@ This repo is intentionally small. It is not a framework, plugin system, or insta
 
 ## Setup
 
-After cloning this repo to the default location:
+After cloning this repo:
 
 ```bash
-cd ~/Workspace/AI/ai-workflows
+cd ai-workflows
 bash setup.sh
 ```
 
@@ -137,14 +137,33 @@ bash setup.sh
 
 This works even if `setup.sh` is not executable.
 
+Link one specific skill:
+
+```bash
+bash setup.sh react-implementation-flow
+```
+
+Link multiple specific skills:
+
+```bash
+bash setup.sh react-implementation-flow project-memory
+```
+
+Use an explicit repo path only when running setup from outside the repo:
+
+```bash
+bash setup.sh /absolute/path/to/ai-workflows
+bash setup.sh /absolute/path/to/ai-workflows react-implementation-flow
+```
+
 If you prefer running it directly:
 
 ```bash
 chmod +x setup.sh
 ./setup.sh
+./setup.sh react-implementation-flow
 ```
 
 Note:
-- The first argument is interpreted as the repo path if it points to a valid directory.
-- To link specific skills, always pass the repo path first: `./setup.sh /absolute/path/to/ai-workflows react-implementation-flow`
-- Running `./setup.sh react-implementation-flow` alone will be treated as a repo path and may fail.
+- If the first argument is a valid directory, it is treated as the repo path.
+- Otherwise, arguments are treated as skill names.
