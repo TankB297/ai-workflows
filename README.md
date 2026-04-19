@@ -92,6 +92,21 @@ This repo is the source of truth.
 Install or symlink skills locally when needed.
 Keep machine-specific setup outside the repo.
 
+Run setup with Bash:
+
+```bash
+bash setup.sh
+```
+
+This works even if `setup.sh` is not executable.
+
+If you prefer running it directly:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
 Note:
 - The first argument is interpreted as the repo path if it points to a valid directory.
 - To link specific skills, always pass the repo path first: `./setup.sh /absolute/path/to/ai-workflows react-implementation-flow`

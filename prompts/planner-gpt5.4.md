@@ -4,7 +4,7 @@ Use GPT-5.4 for planning, reasoning, and review.
 
 Context to consider:
 
-- target framework: ReactJS, React Native, or NextJS
+- target framework: React, React Native, or Next.js
 - existing repo structure
 - source of truth
 - likely files to inspect
