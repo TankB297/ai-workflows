@@ -25,7 +25,7 @@ Recommended workflow:
 2. Use GPT-5.4 for reasoning, discussion, review, and implementation planning.
 3. Copy the final implementation plan into a GPT-5.3-Codex execution thread.
 4. Ask Codex to use the relevant skills, such as `react-implementation-flow` and `project-memory`.
-5. Use the Explorer, Implementer, and Verifier role templates as sub-agent-style guidance when useful.
+5. Ask Codex to delegate Explorer, Implementer, and Verifier sub-agents when the task is non-trivial and the environment supports it.
 6. Let Codex validate the plan against the actual repo before editing, then implement and verify.
 
 For planning, use:
@@ -52,10 +52,10 @@ Typical flow:
 
 1. Planner creates or reviews the plan.
 2. Executor validates the plan against the actual repo.
-3. Explorer role investigates without editing code.
-4. Implementer role makes the smallest safe change.
-5. Verifier role tests the reported scenario and relevant edge cases.
-6. Main executor reconciles results and gives the final summary.
+3. Executor may delegate Explorer for read-only investigation.
+4. Executor may delegate Implementer for scoped code changes.
+5. Executor may delegate Verifier for targeted validation.
+6. Main executor reconciles sub-agent output and owns the final result.
 
 ## Using Skills
 

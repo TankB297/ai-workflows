@@ -26,6 +26,29 @@ Keep the work small, factual, and tied to the target repository's existing patte
 
 This skill is self-contained. The `agents/` and `prompts/` folders may provide useful templates, but they are not required.
 
+## Sub-Agent Delegation
+
+Codex may use real sub-agents when the environment supports delegation.
+
+Use sub-agents for non-trivial tasks where parallel investigation, scoped implementation, or independent verification will reduce risk or save time.
+
+Do not delegate tiny changes where sub-agent coordination adds more overhead than value.
+
+Recommended delegation:
+
+- Explorer: read-only investigation, data flow tracing, source-of-truth discovery, and risk identification.
+- Implementer: scoped code changes that follow the agreed plan and existing architecture.
+- Verifier: targeted validation, edge-case checks, command results, and remaining risk reporting.
+
+The main executor remains responsible for:
+
+- validating the plan before delegation
+- deciding whether delegation is useful
+- giving each sub-agent a clear scope
+- integrating sub-agent findings
+- reviewing final code consistency
+- producing the final answer
+
 ## Environment Detection
 
 Before implementing, identify the project type from repo files and conventions.
