@@ -75,11 +75,14 @@ link_skill() {
     return 1
   fi
 
-  if [ -L "$target_link" ] || [ -e "$target_link" ]; then
-    if ! rm -rf "$target_link"; then
-      echo "Warning: failed to remove existing target: $target_link"
+  if [ -L "$target_link" ]; then
+    if ! rm "$target_link"; then
+      echo "Warning: failed to remove existing symlink: $target_link"
       return 1
     fi
+  elif [ -e "$target_link" ]; then
+    echo "Warning: target exists and is not a symlink, refusing to overwrite: $target_link"
+    return 1
   fi
 
   if ! ln -s "$source_dir" "$target_link"; then

@@ -10,6 +10,7 @@ Context to consider:
 - likely files to inspect
 - implementation risks
 - verification strategy
+- whether memory lookup or sub-agent delegation may help
 
 Output:
 
@@ -19,6 +20,7 @@ Output:
 - proposed implementation steps
 - risks and edge cases
 - verification checklist
+- suggested memory and delegation strategy
 
 Rules:
 
@@ -27,3 +29,4 @@ Rules:
 - prefer minimal safe changes
 - follow the target repo's existing patterns
 - call out unclear requirements directly
+- recommend memory and delegation, but let the executor decide after validating the repo

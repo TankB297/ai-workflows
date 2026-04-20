@@ -23,10 +23,12 @@ Recommended workflow:
 
 1. Create one planning thread with GPT-5.4.
 2. Use GPT-5.4 for reasoning, discussion, review, and implementation planning.
-3. Copy the final implementation plan into a GPT-5.3-Codex execution thread.
-4. Ask Codex to use the relevant skills, such as `react-implementation-flow` and `project-memory`.
-5. Ask Codex to delegate Explorer, Implementer, and Verifier sub-agents when the task is non-trivial and the environment supports it.
-6. Let Codex validate the plan against the actual repo before editing, then implement and verify.
+3. Include a memory and delegation recommendation in the final plan when useful.
+4. Copy the final implementation plan into a GPT-5.3-Codex execution thread.
+5. Ask Codex to use the relevant skills, such as `react-implementation-flow` and `project-memory`.
+6. Let Codex validate the plan against the actual repo, decide whether delegation is useful, then implement and verify.
+
+Planner recommends memory and delegation strategy; Executor decides the actual sub-agent usage after validating the repo.
 
 For planning, use:
 
@@ -56,6 +58,21 @@ Typical flow:
 4. Executor may delegate Implementer for scoped code changes.
 5. Executor may delegate Verifier for targeted validation.
 6. Main executor reconciles sub-agent output and owns the final result.
+
+## Decision Matrix
+
+Use the simplest workflow that fits the task.
+
+| Task type | Memory | Sub-agents |
+| --- | --- | --- |
+| Tiny docs or text edit | Skip | Skip |
+| Isolated code change with obvious scope | Optional | Skip |
+| Existing logic bug or unclear behavior | Use `project-memory` first | Delegate Explorer if useful |
+| Multi-file or risky implementation | Use `project-memory` first | Delegate Explorer, Implementer, and Verifier |
+| Verification-heavy change | Optional | Delegate Verifier |
+| Architecture or behavior decision | Use `project-memory` first | Add extra specialist sub-agents if useful |
+
+Explorer, Implementer, and Verifier are the default roles. For complex cases, Codex may spawn additional focused sub-agents when the extra scope is clear and useful.
 
 ## Using Skills
 
