@@ -1,6 +1,6 @@
 # ai-workflows
 
-Personal workflow templates for working with coding agents across React, React Native, and Next.js projects.
+Personal workflow templates for working with Codex-first coding agents across software projects.
 
 This repo is intentionally small. It is not a framework, plugin system, or installer. It stores reusable prompts, role templates, and Codex-compatible skills that can be synced across machines.
 
@@ -25,7 +25,7 @@ Recommended workflow:
 2. Use GPT-5.4 for reasoning, discussion, review, and implementation planning.
 3. Include a memory and delegation recommendation in the final plan when useful.
 4. Copy the final implementation plan into a GPT-5.3-Codex execution thread.
-5. Ask Codex to use the relevant skills, such as `react-implementation-flow` and `project-memory`.
+5. Ask Codex to use the relevant skills, such as `implementation-flow` and `project-memory`.
 6. Let Codex validate the plan against the actual repo, decide whether delegation is useful, then implement and verify.
 
 Planner recommends memory and delegation strategy; Executor decides the actual sub-agent usage after validating the repo.
@@ -39,7 +39,7 @@ prompts/planner-gpt5.4.md
 For execution, ask Codex to use:
 
 ```text
-skills/react-implementation-flow/SKILL.md
+skills/implementation-flow/SKILL.md
 skills/project-memory/SKILL.md
 ```
 
@@ -85,11 +85,11 @@ skills/<skill-name>/SKILL.md
 Current skills:
 
 ```text
-skills/react-implementation-flow/SKILL.md
+skills/implementation-flow/SKILL.md
 skills/project-memory/SKILL.md
 ```
 
-Use `react-implementation-flow` for React, React Native, and Next.js implementation work.
+Use `implementation-flow` for implementation work across supported project types.
 Use `project-memory` when MemPalace context may help before coding.
 
 Skills are self-contained. They should still work if copied without the `agents/` or `prompts/` folders.
@@ -97,6 +97,8 @@ Skills are self-contained. They should still work if copied without the `agents/
 ## Optional Project Memory
 
 `project-memory` is an optional skill for using MemPalace as supporting context before coding.
+
+Prerequisite: install MemPalace from https://github.com/mempalace/mempalace.
 
 MemPalace setup is local per machine. This repo stores the reusable skill, but it does not configure MCP servers or mine project memory.
 
@@ -157,20 +159,20 @@ This works even if `setup.sh` is not executable.
 Link one specific skill:
 
 ```bash
-bash setup.sh react-implementation-flow
+bash setup.sh implementation-flow
 ```
 
 Link multiple specific skills:
 
 ```bash
-bash setup.sh react-implementation-flow project-memory
+bash setup.sh implementation-flow project-memory
 ```
 
 Use an explicit repo path only when running setup from outside the repo:
 
 ```bash
 bash setup.sh /absolute/path/to/ai-workflows
-bash setup.sh /absolute/path/to/ai-workflows react-implementation-flow
+bash setup.sh /absolute/path/to/ai-workflows implementation-flow
 ```
 
 If you prefer running it directly:
@@ -178,7 +180,7 @@ If you prefer running it directly:
 ```bash
 chmod +x setup.sh
 ./setup.sh
-./setup.sh react-implementation-flow
+./setup.sh implementation-flow
 ```
 
 Note:

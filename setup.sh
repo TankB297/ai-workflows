@@ -13,10 +13,10 @@ Usage:
 
 Examples:
   bash setup.sh
-  bash setup.sh react-implementation-flow
-  bash setup.sh react-implementation-flow project-memory
+  bash setup.sh implementation-flow
+  bash setup.sh implementation-flow project-memory
   bash setup.sh /absolute/path/to/ai-workflows
-  bash setup.sh /absolute/path/to/ai-workflows react-implementation-flow
+  bash setup.sh /absolute/path/to/ai-workflows implementation-flow
 
 Behavior:
   - If no repo path is provided, the directory containing setup.sh is used.

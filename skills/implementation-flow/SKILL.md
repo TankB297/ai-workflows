@@ -1,17 +1,20 @@
 ---
-name: react-implementation-flow
-description: Execute React, React Native, and Next.js tasks from a validated plan using focused exploration, minimal implementation, and targeted verification.
+name: implementation-flow
+description: Execute implementation tasks from a validated plan using focused exploration, scoped implementation, targeted verification, and optional sub-agent delegation.
 ---
 
-# React Implementation Flow
+# Implementation Flow
 
-Use this skill to execute a React ecosystem task from an existing request or plan.
+Use this skill to execute implementation tasks from an existing request or plan.
 
-Supported targets:
+Supported project types:
 
-- React
-- React Native
-- Next.js
+- frontend
+- mobile
+- backend
+- full-stack
+- scripts and tooling
+- documentation and configuration
 
 Supported task types:
 
@@ -51,32 +54,23 @@ The main executor remains responsible for:
 
 ## Environment Detection
 
-Before implementing, identify the project type from repo files and conventions.
+Before implementing, identify the project type, language, framework, and tooling from repo files and conventions.
 
-React indicators:
+General indicators:
 
-- `package.json` with React dependencies
-- Vite, CRA, Webpack, or similar web tooling
-- `src/`, `public/`, browser-focused components
-
-React Native indicators:
-
-- `react-native` dependency
-- Expo config, Metro config, native folders, or mobile entrypoints
-- platform-specific files such as `.ios.*`, `.android.*`, `ios/`, `android/`
-
-Next.js indicators:
-
-- `next` dependency
-- `next.config.*`
-- `app/` or `pages/` routing
-- server/client component boundaries
+- manifests such as `package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `Gemfile`, or similar
+- framework config files
+- app entrypoints, routing, services, packages, modules, scripts, or docs
+- test, lint, typecheck, and build commands
 
 Adapt implementation accordingly:
 
-- React: preserve component boundaries, browser behavior, routing, state, and build tooling.
-- React Native: preserve platform behavior, navigation patterns, native constraints, and device-specific UX.
-- Next.js: respect server/client components, route conventions, data fetching boundaries, caching, and runtime constraints.
+- preserve existing architecture, naming, state management, and module boundaries
+- respect framework-specific constraints and runtime boundaries
+- use the repo's existing test and build tools when available
+- avoid introducing new tooling unless explicitly required
+
+For React, React Native, and Next.js projects, also preserve component boundaries, platform constraints, route conventions, and client/server boundaries.
 
 ## Workflow
 
@@ -84,7 +78,7 @@ Adapt implementation accordingly:
 
 - Compare the request or plan with the actual repository.
 - Identify wrong assumptions, missing files, missing dependencies, or unclear behavior.
-- Confirm the target framework: React, React Native, or Next.js.
+- Confirm the target project type, language, framework, and tooling.
 - Refine the approach before editing code.
 - For non-trivial work, state the implementation plan before making changes.
 
@@ -125,9 +119,9 @@ Verify the most relevant combination of:
 - integration tests
 - app build
 
-For React Native, prefer targeted platform checks when the change is platform-sensitive.
+For platform-sensitive projects, prefer targeted platform checks.
 
-For Next.js, verify client/server boundaries and route behavior when affected.
+For frameworks with runtime boundaries, verify affected boundaries such as client/server, mobile platform, routing, worker, API, or build-time behavior.
 
 If verification cannot be completed, state exactly what was not verified and why.
 
