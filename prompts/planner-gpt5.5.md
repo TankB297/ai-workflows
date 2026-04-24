@@ -1,6 +1,6 @@
 Analyze this task and produce a practical implementation plan.
 
-Use GPT-5.4 for planning, reasoning, and review.
+Use GPT-5.5 for planning, reasoning, and review.
 
 Context to consider:
 

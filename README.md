@@ -21,8 +21,8 @@ This repo is currently Codex-first. Skills and setup scripts are designed for Co
 
 Recommended workflow:
 
-1. Create one planning thread with GPT-5.4.
-2. Use GPT-5.4 for reasoning, discussion, review, and implementation planning.
+1. Create one planning thread with GPT-5.5.
+2. Use GPT-5.5 for reasoning, discussion, review, and implementation planning.
 3. Include a memory and delegation recommendation in the final plan when useful.
 4. Copy the final implementation plan into a GPT-5.3-Codex execution thread.
 5. Ask Codex to use the relevant skills, such as `implementation-flow` and `project-memory`.
@@ -33,7 +33,7 @@ Planner recommends memory and delegation strategy; Executor decides the actual s
 For planning, use:
 
 ```text
-prompts/planner-gpt5.4.md
+prompts/planner-gpt5.5.md
 ```
 
 For execution, ask Codex to use:
@@ -47,7 +47,7 @@ skills/project-memory/SKILL.md
 
 Default model split:
 
-- GPT-5.4: planning, reasoning, review
+- GPT-5.5: planning, reasoning, review
 - Codex / GPT-5.3: implementation and verification
 
 Typical flow:
