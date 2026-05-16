@@ -17,9 +17,9 @@ This links all skills under `skills/` into the local agent skill discovery direc
 
 ## Usage
 
-This repo is currently Codex-first. Skills and setup scripts are designed for Codex-style local skill discovery, while prompts and role templates remain plain Markdown.
+This repo is currently Codex-first, with an optional 9Router cost-saving workflow. Skills and setup scripts are designed for Codex-style local skill discovery, while prompts, workflows, and role templates remain plain Markdown.
 
-Recommended workflow:
+Recommended Codex direct workflow:
 
 1. Create one planning thread with GPT-5.5.
 2. Use GPT-5.5 for reasoning, discussion, review, and implementation planning.
@@ -30,7 +30,7 @@ Recommended workflow:
 
 Planner recommends memory and delegation strategy; Executor decides the actual sub-agent usage after validating the repo.
 
-For planning, use:
+For Codex direct planning, use:
 
 ```text
 prompts/planner-gpt5.5.md
@@ -43,12 +43,27 @@ skills/implementation-flow/SKILL.md
 skills/project-memory/SKILL.md
 ```
 
+For 9Router cost-saving work, use:
+
+```text
+workflows/9router.md
+prompts/planner-9router.md
+```
+
+The 9Router workflow treats Planner and Executor as roles instead of fixed model IDs. It defaults to single-agent execution, avoids routine sub-agent spawning, and expects stronger verification when 9Router falls back to weaker models.
+
 ## Workflow
 
-Default model split:
+Codex direct model split:
 
 - GPT-5.5: planning, reasoning, review
-- Codex / GPT-5.3: implementation and verification
+- Codex / GPT-5.3-Codex: implementation and verification
+
+9Router cost-saving model split:
+
+- Planner route: prefer reasoning-capable models
+- Executor route: prefer coding-capable models
+- Fallback route: reduce scope and verify more carefully when model quality drops
 
 Typical flow:
 
@@ -73,6 +88,8 @@ Use the simplest workflow that fits the task.
 | Architecture or behavior decision | Use `project-memory` first | Add extra specialist sub-agents if useful |
 
 Explorer, Implementer, and Verifier are the default roles. For complex cases, Codex may spawn additional focused sub-agents when the extra scope is clear and useful.
+
+For 9Router, default to one agent and no delegation. Spawn at most one narrow sub-agent only when the task is large or risky enough to justify the extra token cost.
 
 ## Using Skills
 
@@ -130,6 +147,12 @@ prompts/
 ```
 
 Planner prompt templates. These are examples for planning and review. They are not runtime dependencies.
+
+```text
+workflows/
+```
+
+Workflow profiles for choosing how to run planner/executor loops across providers or cost modes.
 
 ## Syncing Across Machines
 
